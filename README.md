@@ -11,12 +11,13 @@ This Brightcove Player plugin extends the basic IMA3 plugin's macro functionalit
 The code is executed before each IMA ad server call in addition to the IMA3 plugin's standard macro replacement functionality described [here](http://docs.brightcove.com/en/video-cloud/brightcove-player/guides/ima-plugin.html#adMacros).
 
 ## Getting Started
+* Configure the IMA plugin following the standard instructions [here](http://docs.brightcove.com/en/video-cloud/brightcove-player/guides/ima-plugin.html).
 * Download the plugin and place on your server.
 * Edit the player configuration in the [Players Module of Video Cloud Studio](https://studio.brightcove.com/products/videocloud/players).
 * Under _Plugins>JavaScript_, add the URL to the plugin to the player configuration and click +.
 * Under _Plugins>Name, enter `adTagManipulate` as the name. 
 * Under _Plugins>Options (JSON)_, enter the configuration options described below and click `+`.
-* Configure the IMA plugin following the standard instructions [here](http://docs.brightcove.com/en/video-cloud/brightcove-player/guides/ima-plugin.html).
+
 
 ## Plugin Configuration
 ```json
