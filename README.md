@@ -1,5 +1,5 @@
 # ima-ad-tag-manipulate
-Brightcove player plugin to dynamically modify the IMA ad tag with custom page and video-cloud variables
+Brightcove player plugin to dynamically modify the IMA ad tag with custom page and video-cloud variables.
 
 This Brightcove Player plugin extends the basic IMA3 plugin's macro functionality enabling the following features:
 
@@ -61,5 +61,52 @@ ad tag: _http://pubads.g.doubleclick.net/gampad/ads?env=vp...&level={p1}&type={p
 ```
 The resulting ad tag: _http://pubads.g.doubleclick.net/gampad/ads?env=vp...&level=MyLevel&type=MyType_
 
+### Populating the ad tag with variables passed from the player's query string (iframe embeds)
+
+#### Example:
+ad tag: _http://pubads.g.doubleclick.net/gampad/ads?env=vp...&level={q1}&type={q2}_
+
+#### Plugin Configuration:
+```json
+{
+    "queryStringVariables": {
+	      "{q1}": "level",
+	      "{p2}": "type"
+    }
+}
+```
+#### iFrame Player Embed
+```html
+<iframe src="//players.brightcove.net/12345678/default_default/index.html?level=MyLevel&type=MyType"></iframe>
+```
+
+In this example, {q1} in the ad tag is replaced with the value of the query string variable level who's value is MyLevel
+
+### Custom Replace Function
+
+The custom replace function can be used to perform any action on the ad tag. Examples include:
+1. Modifying the domain name of the calling page before passing it into the ad tag
+2. Removing undesired characters from page variables or Video Cloud metadata
+
+```javascript
+function customJavascriptFunction(player, debug, url) {
+	// Do whatever you want to the URL, then return the new version
+	
+	return url
+}
+```
+
+**NOTE:** The custom javascript function must be included in the adTagManipulate.js file or loaded before it.
+
+### Other examples: 
+
+#### Populate the value in an ad tag based on a video cloud custom field 'rating'
+
+```json
+{
+   "pageVariables": {
+   	"{p1}": "player.mediainfo.custom_fields['rating']"
+}
+```
 
 
