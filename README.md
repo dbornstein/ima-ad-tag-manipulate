@@ -1,10 +1,11 @@
 # ima-ad-tag-manipulate
 Brightcove player plugin to dynamically modify the IMA ad tag with custom page and video-cloud variables.
 
+
 This Brightcove Player plugin extends the basic IMA3 plugin's macro functionality enabling the following features:
 
 - populate the ad tag with variables passed from the calling web page (advanced in-page embeds)
-- populate the ad tag with values passed from from the player's query string (iframe embeds)
+- populate the ad tag with values passed from the player's query string (iframe embeds)
 - execute a custom function to modify any aspect of the ad tag
 
 The code is executed before each IMA ad server call in addition to the IMA3 plugin's standard macro replacement functionality described [here](http://docs.brightcove.com/en/video-cloud/brightcove-player/guides/ima-plugin.html#adMacros).
