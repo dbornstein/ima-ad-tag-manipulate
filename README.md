@@ -1,2 +1,65 @@
 # ima-ad-tag-manipulate
 Brightcove player plugin to dynamically modify the IMA ad tag with custom page and video-cloud variables
+
+This Brightcove Player plugin extends the basic IMA3 plugin's macro functionality enabling the following features:
+
+- populate the ad tag with variables passed from the calling web page (advanced in-page embeds)
+- populate the ad tag with values passed from from the player's query string (iframe embeds)
+- execute a custom function to modify any aspect of the ad tag
+
+The code is executed before each IMA ad server call in addition to the IMA3 plugin's standard macro replacement functionality described [here](http://docs.brightcove.com/en/video-cloud/brightcove-player/guides/ima-plugin.html#adMacros).
+
+## Getting Started
+* Download the plugin and place on your server.
+* Edit the player configuration in the [Players Module of Video Cloud Studio](https://studio.brightcove.com/products/videocloud/players).
+* Under _Plugins>JavaScript_, add the URL to the plugin to the player configuration and click +.
+* Under _Plugins>Name, enter `adTagManipulate` as the name. 
+* Under _Plugins>Options (JSON)_, enter the configuration options described below and click `+`.
+* Configure the IMA plugin following the standard instructions [here](http://docs.brightcove.com/en/video-cloud/brightcove-player/guides/ima-plugin.html).
+
+## Plugin Configuration
+```json
+{
+    "debug" : true,
+    "pageVariables": {
+	      "{p1}": "p1VariableName",
+	      "{p2}": "p2VariableName"
+    },
+    "queryStringVariables": {
+		    "{q1}": "q1",
+		    "{q2}": "q2"
+	   },
+     "customReplaceFunction": {
+	      "functionName": "customJavascriptFunction"
+     }
+}
+```
+
+### Populating the ad tag with variables passed from the page
+
+When embedding the Brightcove player using in-page embeds, the plugin can retrieve any variable available in the Javascript global scope. These variables will be dynamically inserted into the ad tag before the call is made to the ad server.
+
+#### Example:
+ad tag: _http://pubads.g.doubleclick.net/gampad/ads?env=vp...&level={p1}&type={p2}_
+
+#### Plugin Configuration:
+```json
+{
+    "pageVariables": {
+	      "{p1}": "p1Variable",
+	      "{p2}": "p2Variable"
+    }
+}
+```
+
+#### In-Page code
+```javascript
+<script>
+     var p1variable = "MyLevel"
+     var p2variable = "MyType"
+</script>
+```
+The resulting ad tag: _http://pubads.g.doubleclick.net/gampad/ads?env=vp...&level=MyLevel&type=MyType_
+
+
+
