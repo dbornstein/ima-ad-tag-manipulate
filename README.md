@@ -82,7 +82,7 @@ ad tag: _http://pubads.g.doubleclick.net/gampad/ads?env=vp...&level={q1}&type={q
 <iframe src="//players.brightcove.net/12345678/default_default/index.html?level=MyLevel&type=MyType"></iframe>
 ```
 
-In this example, {q1} in the ad tag is replaced with the value of the query string variable level who's value is MyLevel
+In this example, __{q1}__ in the ad tag is replaced with the value of the query string variable __level__ who's value is __MyLevel__
 
 ### Custom Replace Function
 
